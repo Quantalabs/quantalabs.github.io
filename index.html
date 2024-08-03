@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>τangents</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/meta/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/meta/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/meta/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/meta/favicon-16x16.png">
+  <link rel="manifest" href="/meta/site.webmanifest">
+  <link rel="mask-icon" href="/meta/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="msapplication-TileImage" content="/meta/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS"
+    href="https://quantalabs.github.io/rss.xml">
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+    integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js"
+    integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy"
+    crossorigin="anonymous"></script>
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // customised options
+        // • auto-render specific keys, e.g.:
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        // • rendering keys, e.g.:
+        throwOnError: false
+      });
+    });
+  </script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+    @import url('https://unpkg.com/marx-css/css/marx.min.css');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    * {
+      font-family: 'Inconsolata', monospace;
+      font-optical-sizing: auto;
+      font-weight: 300;
+      font-style: normal;
+      font-variation-settings:
+        "wdth" 100;
+
+      background-color: var(--white);
+    }
+
+    strong {
+      font-weight: 900 !important;
+    }
+
+    em {
+      font-family: "Ubuntu Mono", monospace;
+      font-style: italic;
+    }
+
+    .vlist:has(span:empty):not(:has(:not(span:empty))) {
+      display: none !important;
+    }
+
+    .katex * {
+      font-family: "Computer Modern Serif";
+    }
+
+
+    .greek {
+      font-family: 'Source Code Pro', monospace;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    h1 .greek {
+      font-size: calc(var(--font-size-h1) - 3.5px);
+    }
+
+    h2 .greek {
+      font-size: calc(var(--font-size-h2) - 2px);
+    }
+
+    /* On deskotp */
+    #nav-desk {
+      float: left;
+      width: 15vw;
+      position: fixed;
+    }
+
+    #content {
+      padding-top: 10vh;
+      padding-bottom: 0;
+      min-height: 93vh;
+    }
+
+    #nav-mob {
+      display: none;
+    }
+
+    pre * {
+      background-color: #1e1e2e;
+    }
+
+    .footer {
+      position: relative;
+      border-top: var(--border);
+      padding: var(--md-pad) 0;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      height: 7vh;
+    }
+
+    .searchResultsItems-mob,
+    .search-results__items {
+      margin-top: 1vh;
+    }
+
+    .searchResultsItems-mob li,
+    .search-results__items li {
+      padding-bottom: 1vh;
+      margin-bottom: 1vh;
+      border-bottom: solid 2px var(--black);
+      list-style-type: none;
+    }
+
+    .footnote-definition-label {
+      float: left;
+      margin-right: 0.5em;
+    }
+
+    /* On mobile */
+    @media screen and (max-width: 1134px) {
+      #content {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      #nav-desk {
+        display: none;
+      }
+
+      #nav-mob {
+        display: block;
+      }
+
+      #logo img {
+        margin-left: 0;
+        padding-left: 0;
+        margin-right: 4vw;
+      }
+
+      #logo {
+        width: 80vw;
+        align-items: center;
+        display: flex;
+      }
+
+      #nav-mob ul {
+        padding-left: 5vw;
+        display: flex;
+        align-items: center;
+      }
+
+      .hide-mob {
+        display: none;
+      }
+
+      #search-icon {
+        margin-right: 5vw;
+        margin-left: 3vw;
+      }
+
+      #search-mob {
+        width: 60vw;
+        margin: auto;
+      }
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-400: #FAC35F;
+        --primary: #F5B83B;
+        --primary-600: #EBAF26;
+        --accent: #FF8A63;
+        --grey: #FAF9F7;
+        --white: #000000;
+        --black: #ffffff;
+
+        --text: rgba(255, 255, 255, 0.8);
+        --secondary: rgba(255, 255, 255, 0.54);
+        --disabled: rgba(255, 255, 255, 0.38);
+        --dividers: rgba(255, 255, 255, 0.12);
+      }
+
+      .invert {
+        filter: invert(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav id="nav-desk">
+    <ul>
+      <li>
+        <img src="/meta/android-chrome-512x512.png" alt="logo" width="100">
+        <h2><span class="greek">τ</span>angents</h2>
+        <p>by Arvind Venkatesh</p>
+      </li>
+      <li>
+        <a href="https://quantalabs.github.io">Home</a>
+      </li>
+      <br>
+      <li>
+        <div class="search-container">
+          <input id="search" type="search" placeholder="Search...">
+
+          <div class="search-results">
+            <div class="search-results__items"></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <nav id="nav-mob">
+    <ul>
+      <li id="logo">
+        <img src="/meta/android-chrome-192x192.png" alt="logo" width="50" id="logo-mob">
+        <h2><span class="greek">τ</span>angents</h2>
+      </li>
+      <li>
+        <a href="https://quantalabs.github.io">Home</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" id="search-icon" onclick="toggleSearch()"><i class="fa fa-search"></i></a>
+      </li>
+    </ul>
+    <div id="search-mob" class="hide-mob">
+      <div class="search-container">
+        <input id="searchInput-mob" type="search" placeholder="Search...">
+
+        <div class="searchResults-mob">
+          <div class="searchResultsItems-mob"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main class="section" id="content">
+    <div class="container">
+      
+<h1 class="title">
+  Blog Posts
+</h1>
+<ul>
+  <!-- If you are using pagination, section.pages will be empty. You need to use the paginator object -->
+  
+  <li><a href="https://quantalabs.github.io/riemann/">Transformational Music Theory: A Mathematical Approach To Analyzing Music</a></li>
+  
+</ul>
+
+    </div>
+  </main>
+  <div class="footer">
+    <div>&copy; 2024 Arvind Venkatesh</div>
+  </div>
+
+  <script type="text/javascript" src="https://quantalabs.github.io/elasticlunr.min.js"></script>
+  <script type="text/javascript" src="https://quantalabs.github.io/meta/search.js"></script>
+</body>
+
+</html>
