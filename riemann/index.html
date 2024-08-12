@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>τangents</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/meta/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/meta/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/meta/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/meta/favicon-16x16.png">
+  <link rel="manifest" href="/meta/site.webmanifest">
+  <link rel="mask-icon" href="/meta/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="msapplication-TileImage" content="/meta/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS"
+    href="https://quantalabs.github.io/rss.xml">
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+    integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js"
+    integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy"
+    crossorigin="anonymous"></script>
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // customised options
+        // • auto-render specific keys, e.g.:
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        // • rendering keys, e.g.:
+        throwOnError: false
+      });
+    });
+  </script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+    @import url('https://unpkg.com/marx-css/css/marx.min.css');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    * {
+      font-family: 'Inconsolata', monospace;
+      font-optical-sizing: auto;
+      font-weight: 300;
+      font-style: normal;
+      font-variation-settings:
+        "wdth" 100;
+
+      background-color: var(--white);
+    }
+
+    strong {
+      font-weight: 900 !important;
+    }
+
+    em {
+      font-family: "Ubuntu Mono", monospace;
+      font-style: italic;
+    }
+
+    .vlist:has(span:empty):not(:has(:not(span:empty))) {
+      display: none !important;
+    }
+
+    .katex * {
+      font-family: "Computer Modern Serif";
+    }
+
+
+    .greek {
+      font-family: 'Source Code Pro', monospace;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    h1 .greek {
+      font-size: calc(var(--font-size-h1) - 3.5px);
+    }
+
+    h2 .greek {
+      font-size: calc(var(--font-size-h2) - 2px);
+    }
+
+    /* On deskotp */
+    #nav-desk {
+      float: left;
+      width: 15vw;
+      position: fixed;
+    }
+
+    #content {
+      padding-top: 10vh;
+      padding-bottom: 0;
+      min-height: 93vh;
+    }
+
+    #nav-mob {
+      display: none;
+    }
+
+    pre * {
+      background-color: #1e1e2e;
+    }
+
+    .footer {
+      position: relative;
+      border-top: var(--border);
+      padding: var(--md-pad) 0;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      height: 7vh;
+    }
+
+    .searchResultsItems-mob,
+    .search-results__items {
+      margin-top: 1vh;
+    }
+
+    .searchResultsItems-mob li,
+    .search-results__items li {
+      padding-bottom: 1vh;
+      margin-bottom: 1vh;
+      border-bottom: solid 2px var(--black);
+      list-style-type: none;
+    }
+
+    .footnote-definition-label {
+      float: left;
+      margin-right: 0.5em;
+    }
+
+    /* On mobile */
+    @media screen and (max-width: 1134px) {
+      #content {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      #nav-desk {
+        display: none;
+      }
+
+      #nav-mob {
+        display: block;
+      }
+
+      #logo img {
+        margin-left: 0;
+        padding-left: 0;
+        margin-right: 4vw;
+      }
+
+      #logo {
+        width: 80vw;
+        align-items: center;
+        display: flex;
+      }
+
+      #nav-mob ul {
+        padding-left: 5vw;
+        display: flex;
+        align-items: center;
+      }
+
+      .hide-mob {
+        display: none;
+      }
+
+      #search-icon {
+        margin-right: 5vw;
+        margin-left: 3vw;
+      }
+
+      #search-mob {
+        width: 60vw;
+        margin: auto;
+      }
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-400: #FAC35F;
+        --primary: #F5B83B;
+        --primary-600: #EBAF26;
+        --accent: #FF8A63;
+        --grey: #FAF9F7;
+        --white: #000000;
+        --black: #ffffff;
+
+        --text: rgba(255, 255, 255, 0.8);
+        --secondary: rgba(255, 255, 255, 0.54);
+        --disabled: rgba(255, 255, 255, 0.38);
+        --dividers: rgba(255, 255, 255, 0.12);
+      }
+
+      .invert {
+        filter: invert(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav id="nav-desk">
+    <ul>
+      <li>
+        <img src="/meta/android-chrome-512x512.png" alt="logo" width="100">
+        <h2><span class="greek">τ</span>angents</h2>
+        <p>by Arvind Venkatesh</p>
+      </li>
+      <li>
+        <a href="https://quantalabs.github.io">Home</a>
+      </li>
+      <br>
+      <li>
+        <div class="search-container">
+          <input id="search" type="search" placeholder="Search...">
+
+          <div class="search-results">
+            <div class="search-results__items"></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <nav id="nav-mob">
+    <ul>
+      <li id="logo">
+        <img src="/meta/android-chrome-192x192.png" alt="logo" width="50" id="logo-mob">
+        <h2><span class="greek">τ</span>angents</h2>
+      </li>
+      <li>
+        <a href="https://quantalabs.github.io">Home</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" id="search-icon" onclick="toggleSearch()"><i class="fa fa-search"></i></a>
+      </li>
+    </ul>
+    <div id="search-mob" class="hide-mob">
+      <div class="search-container">
+        <input id="searchInput-mob" type="search" placeholder="Search...">
+
+        <div class="searchResults-mob">
+          <div class="searchResultsItems-mob"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main class="section" id="content">
+    <div class="container">
+      
+<h1 class="title">
+    Transformational Music Theory: A Mathematical Approach To Analyzing Music
+</h1>
+<p class="subtitle">Combining group theory and music theory. | July 22, 2024</p>
+<hr>
+
+<h4>Table of Contents</h4>
+<ol>
+    
+    <li>
+        <a href="https://quantalabs.github.io/riemann/#introduction">Introduction</a>
+        
+    </li>
+    
+    <li>
+        <a href="https://quantalabs.github.io/riemann/#basic-music-theory">Basic Music Theory</a>
+        
+    </li>
+    
+    <li>
+        <a href="https://quantalabs.github.io/riemann/#transformational-theory">Transformational Theory</a>
+        
+    </li>
+    
+    <li>
+        <a href="https://quantalabs.github.io/riemann/#neo-riemannian-analysis">Neo-Riemannian Analysis</a>
+        
+        <ul style="list-style-type: lower-alpha">
+            
+            <li>
+                <a href="https://quantalabs.github.io/riemann/#the-tonnetz">The Tonnetz</a>
+                
+            </li>
+            
+            <li>
+                <a href="https://quantalabs.github.io/riemann/#using-the-tonnetz-and-neo-riemannian-analysis">Using the Tonnetz and Neo-Riemannian Analysis</a>
+                
+            </li>
+            
+        </ul>
+        
+    </li>
+    
+</ol>
+<hr>
+
+
+<blockquote>
+<p><strong>Prerequisites</strong><br />
+This post uses group theory and set theory, so familiarizing yourself with those fields is encouraged before reading this piece. Additionally, I try to explain some basic music theory, but prior knowledge of western music theory will help tremendously in understanding this. <a rel="noopener" target="_blank" href="https://youtu.be/XOT5-umjiHg?t=60">This video</a> seems to cover most of what you need to know.</p>
+</blockquote>
+<h2 id="introduction">Introduction</h2>
+<p>In the late 19th century, composers of the romantic era began to play around with a new type of sound, one astray from the common sound of the Western musical world. The composers took the dull blues and greens of the Western classical palette and added a bright kermes red, deep tyrian purple, and a glaucous blueish-green. They did this through the use of <em>chromaticism</em> and <em>atonality</em>.</p>
+<p>Atonality is music which has no tonal center, i.e. atonal music sounds much different than music we might be used to. For example, take Schoenberg's <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=Nuevj2APlrM">3 Klavierstücke, Op. 11: No. 1, Mäßige Viertel</a>. Chromaticism sounds more familiar, and keeps a tonal center, but will use notes outside the key (see Debussy's <a rel="noopener" target="_blank" href="https://youtu.be/jlLoXvamfZw">Prélude à l'aprés-midi d'un Faune</a>) Both forms of composition, however, are used by composers to stray from the techniques of tonal music and tonality<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
+<p style="text-align: center;" align="center" id="IVI"></p>
+<p align="center">
+<midi-player src="/riemann/IVI.mid" sound-font> </midi-player>
+</p>
+<p>This is an example of tonality. Tonal music is music that is built off of some type of scale, which will imply a tonal center. The two most common ones are the major and minor scales. Using these scales, we can build chords using only the notes in the scale, such as those above. Using the notes of the scale helps keep our tonal center (the first note of the scale, or the root), and thus we are able to create feelings of tension by venturing away from the root and release by returning.</p>
+<p>By venturing farther away from tonality, the Late Romantic-era composers created music in which conventional methods of analysis could not work. This led to the creation of transformational theory, which instead of looking at musical objects in relation to the tonic, it viewed them in relation to each other. Instead of thinking of a \(I-V\) cadence (the first two chords from the snippet above), we think of a &quot;Dominant operation&quot;. We look at the chords in context of the surrounding musical objects, i.e. we care less about the content of the chord itself and more about how we got to the chord and how we leave it.</p>
+<h2 id="basic-music-theory">Basic Music Theory</h2>
+<blockquote>
+<p>Anyone who has taken an introductory music theory course, or studied music theory at some point, should be able to skip this section.</p>
+</blockquote>
+<p>To get to transformational theory and the math behind it, it's important to understand some of the basics. Western music is built off of the 12 tone equal tempered tuning system, meaning the following twelve notes are the only notes available:</p>
+<p style="text-align: center;" align="center" id="chrom"></p>
+<p>Of those twelve notes, we construct a 7-note scale called the major scale, which is the most common scale in Western classical music. Our major scale is as follows:</p>
+<p style="text-align: center;" align="center" id="diat"></p>
+<p>We can create modes of this scale by altering which note we start on. Starting on C as above gives us a major scale, but if we start on the 6th degree, A, we get an A minor scale.</p>
+<p style="text-align: center;" align="center" id="aeolian"></p>
+<p>The nice thing about 12 TET is that we can transpose these scales, and they still sound nice. So if we raise all the notes in the diatonic scale by a half step (one note chromatically), we get a new scale. Since this one starts on Db, we'll call it the Db major scale, and we'll have Bb minor if we start on the 6th degree, as before.</p>
+<p style="text-align: center;" align="center" id="asharp_min"></p>
+<p>Now that we have a scale, we can create chords. As we will see, chords are very important in transformational theory, as they are in most forms of analysis. Let's recall the \(I-V-I\) cadence from the beginning.</p>
+<p style="text-align: center;" align="center" id="IVI2"></p>
+<p align="center">
+<midi-player src="/riemann/IVI.mid" sound-font> </midi-player></p>
+<p>The \(I\) chord is built from the first, third, and fifth notes. The \(V\) chord is built from the fifth, seventh, and second notes (we wrap around the scale once we reach the end). Similar to how we built those chords, we can build any other 3 note chord by using every other note. We call the intervals these chords are built from &quot;thirds&quot;, and we call the chord a &quot;triad&quot;. The triad is built off of the &quot;root&quot;, and the second and third notes are called the third and fifth, respectively.</p>
+<p style="text-align: center;" align="center" id="triads"></p>
+<p>These triads contain two types of thirds: a major third, which has 3 notes in between, and a minor third, which has 2 notes in between. For example, D and F form a minor third because D# and E are in between them in the chromatic scale, while C and E form a major third because C#, D, and D# are in between the two.</p>
+<p style="text-align: center;" align="center" id="intervals"></p>
+<p>Most of musical analysis before Transformational Theory (e.g. Schenkerian analysis), focused on relationships between these chords and the scale degrees they are built off of. For example, we could look at a piece and find the chords at different points. We can analyze why the piece might make us feel a certain way by looking at its motion harmonically, i.e. how it moves from chord to chord. Let's analyze the following progression as an example.</p>
+<p style="text-align: center;" align="center" id="vi_ii_v_i">
+<img style="background-color: #ffffff;" class="invert" src="https://upload.wikimedia.org/score/a/i/aixpf4sdayajaqa6azwjq733bgff0cc/aixpf4sd.png"><br>
+<audio controls>
+    <source src="https://upload.wikimedia.org/score/a/i/aixpf4sdayajaqa6azwjq733bgff0cc/aixpf4sd.mp3" type="audio/mp3">
+  </audio>
+</p>
+<p>If we wanted to understand why our progression feels so resolved, we can analyze this using everything we've learned so far. We end on a \(I\) chord, meaning that the last chord is built off of the tonal center, or tonic, of the scale/key. Understandably, other chords in this key will feel unresolved, but the final chord does not need to resolve- it is the resolution. We can also take this a step further, noting that the final two chords form a \(V-I\) cadence, commonly known as an authentic cadence. The authentic cadence is perhaps the most common sequence of chords in any form of western music. This is because the \(V\) chord has a lot of tension, and the \(I\) chord resolves all of the tension.</p>
+<p>There are more tools we can use to analyze this progression, but really, what we've covered so far is all you need to understand the music theory below.</p>
+<h2 id="transformational-theory">Transformational Theory</h2>
+<p>Now that we have a basic grasp of conventional analysis, we can start to look at transformational theory and its math.</p>
+<p>Transformational theory ignores the key we're in and chord we're on. It works by analyzing the relationship between any two chords rather than the chords themselves. As David Lewin writes in <em>Generalized Musical Intervals and Transformations</em> (the foundational text of transformational theory), transformation theory asks &quot;If I am at s and wish to get to t, what characteristic gesture should I perform in order to arrive there?&quot; (159).</p>
+<p>Let's take a look at an example. Say we see the following progression in a piece of music:</p>
+<p style="text-align: center;" align="center" id="I-iii"></p>
+<p align="center">
+<midi-player src="/riemann/I-iii.mid" sound-font> </midi-player></p>
+<p>&quot;Functionally,&quot; (i.e. analyzing the chords in relation to the key) we'd analyze this as a \(I-iii\) progression. But, let's look at the transformation that is taking place. We are changing one note and moving it down a half step: C moves down to B. In some forms of transformational theory, this is called a leading tone exchange.</p>
+<p>The obvious question is: how can we rigorously define these transformations? Before we get to defining these transformations for chords, let's think of transformations we can perform with the notes of the chromatic scale. For instance, we could have a transformation that makes a key go up by 6 notes. Let's call it \(T_{6}\). We could have this transformation for any \(n\) keys, so we can define the operation \(T_{n}\) to represent moving $n$ keys up the chromatic scale.</p>
+<p>What are some properties of this transformation? We know:</p>
+<ul>
+<li>We have a function $T_0$ that acts as if we never applied the function.
+$$T_0(k) = k$$</li>
+<li>Applying $T_n$ and then $T_{-n}$ gives us the value we started with.</li>
+<li>$T_{p}+(T_{q}+T_{r}) = (T_{p}+T_{q})+T_{r}$</li>
+</ul>
+<p>So we have an identity element, an inverse, and associativity: we have a group! Our group is isomorphic to the group $\mathbb{Z}_{12}$, or the cyclic group with 12 elements (0-11). We can use this to our advantage, and represent our group as numbers instead of note names. This helps us abstract away the irrelevant details like which key we are in, and focus on the transformations that we are applying. A common way of representing our group of notes is through a clock diagram like below (we'll use this to help visualize transformations later on):</p>
+<p align="center">
+<img class="invert" src="/riemann/clock.svg" style="background-color: transparent; object-fit: cover;height: 330px;width:500px;"></img>
+</p>
+<p>Now that we can define these transformations for a single note, let's see how we can generalize this to apply to any transformation on an object. Lewin did this by defining a <em>generalized interval system</em> (GIS). He defines it as follows:</p>
+<blockquote>
+<p>A <em>Generalized Interval System</em> (GIS) is an ordered triple $(S, \text{IVLS}, \text{int})$, where S, the <em>space</em> of the GIS, is a family of elements, $\text{IVLS}$, the <em>group of intervals</em> for the GIS, is a mathematical group, and $\text{int}$ is a function mapping $S \times S$ into $\text{IVLS}$, all subject to the two conditions (A) and (B) following.</p>
+<p>$\quad$(A): For all $r$, $s$, and $t$ in $S$, $\text{int}(r, s) \circ \text{int}(s, t) = \text{int}(r, t)$.</p>
+<p>$\quad$(B): For every $s$ in $S$ and every $i$ in $\text{IVLS}$, there is a unique $t$ in $S$ which lies [in] the interval $i$ from $s$, that is a unique $t$ which satisfies the equation $\text{int}(s, t) = i$ (Lewin, 1987, p. 26)</p>
+</blockquote>
+<p>In simpler terms, a GIS contains a given musical space (e.g. a chromatic or diatonic scale), a group of intervals (this could be $\mathbb{Z}_{12}$ or something similar), and a function (which we call the interval function $\text{int}$) which maps our Cartesian Product $S \times S$ to the group of intervals.</p>
+<p>The conditions Lewin sets are very useful as they make our group into a <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Principal_homogeneous_space">G-torsor</a>, but if you have no idea what that is, don't worry, we won't need to deal with that for today.</p>
+<p>Now that we have a basic understanding of what a GIS is, we can look at some examples. Let's consider a basic tonal example: our musical space shall be the C major scale. We'll then define the function $\text{int} : S \times S \to \mathbb{Z}_{7}$ such that $\text{int}(s,t)$ is the minimum number of scale steps going up from $s$ required to reach $t$. For example, we have $\text{int}(C, D) = 1$ and $\text{int}(C, G)=4$, while $\text{int}(F, D)=5$, not $-2$. It's easy to find our identity ($int(a, a)$) and inverse elements ($int(a, b) + int(b, a)$).</p>
+<h2 id="neo-riemannian-analysis">Neo-Riemannian Analysis</h2>
+<p>So far, we've done a lot of abstract math/music theory with very little application. We know that we can model intervals as functions which can form groups, we have a very rigorous way to define these groups, but absolutely no idea how to apply it. For this, music theorists have created several branches of transformational theory, but for today, we'll use Neo-Riemannian Analysis. It's primarily used in analyzing triadic music, tonal or atonal.</p>
+<p>Considering most of the people who are reading this are primarily mathematicians or math enthusiasts, I should mention that Neo-Riemannian Analysis is not in fact named after the mathematician, but instead after the music theorist Hugo Riemann, whose work focused on dualism (simply put, the idea that major and minor triads are opposites) and transformations. Lewin took Riemann's transformations and abandoned dualism to apply transformational theory to music that used <em>triadic atonality</em>.</p>
+<p>Neo-Riemannian Theory defines three operations:</p>
+<ul>
+<li>The <strong>R</strong> transformation: It moves the fifth up a whole step (2 half-steps) in a major triad and the root down a whole step in a minor triad.</li>
+<li>The <strong>L</strong> transformation: It moves the root down a half step in a major triad and the fifth up a half step in a minor triad.</li>
+<li>The <strong>P</strong> transformation: Exchanges a major triad for its minor counterpart, and vice versa. It's simply a shorthand for $R(LR)^3$</li>
+</ul>
+<p>How is this a GIS? It's clear our space is not comprised of individual notes, but instead of triads. We'll need new notation to represent these triads. Remember the clock from earlier? We'll put that into use, and replace C with 0, C# with 1, etc. We'll call this set $a$, and can now construct our musical space by constructing the following two elements for each element $n \in a$:</p>
+<ul>
+<li>$n_{maj} = [n, n+4, n+7]$</li>
+<li>$n_{min} = [n, n+3, n+7]$</li>
+</ul>
+<p>For example, for $n=4$, we have $n_{maj}$ and $n_{min}$ as follows:</p>
+<p align="center">
+<img class="invert" src="/riemann/4maj.svg" style="background-color: transparent;object-fit: cover;height: 330px;width:210px;"></img>
+<img class="invert" src="/riemann/4min.svg" style="background-color: transparent;object-fit: cover;height: 330px;width:210px;"></img><br>
+A major chord built off of $n=4$ (left) and a minor chord built off of $n=4$ (right).
+</p>
+<p>We can define these transformations:</p>
+<p>$$L.n_{maj} = (n+4)_{min}$$</p>
+<p>$$L.n_{min} = (n+8)_{maj}$$</p>
+<p>$$R.n_{maj} = (n+9)_{min}$$</p>
+<p>$$R.n_{min} = (n+3)_{maj}$$</p>
+<p>$$P.n_{maj} = n_{min}$$</p>
+<p>$$P.n_{min} = n_{maj}$$</p>
+<p>Now it's easy to verify that $P = R(LR)^3$. Now that we've defined our transformations, we can verify that they form a GIS. We have an identity element: doing nothing. Proving associativity is straightforward.</p>
+<p>To determine the groups structure, we only need to look at $L$ and $R$, as $P=R(LR)^3$. Note that:</p>
+<p>$$ LR.n_{maj} = (n+5)_{maj} $$</p>
+<p>$$ LR.n_{min} = (n+7)_{min} $$</p>
+<p>This means that in order for us to get back to our original state, we must apply $LR$ 12 times, so $LR$ is of order 12. This means that we can define our group like so:</p>
+<p>$$ G = \langle L, R, P | P=R(LR)^3, (LR)^{12}=P^2=(LRP)^2-1 \rangle $$</p>
+<p>Our definition above shows us that our group is isomorphic to $D_{24}$.</p>
+<p>In summary, our musical space consists of major and minor chords, which we notate as $n_{maj}$ and $n_{min}$ for any note $n$. Our group is defined above, and consists of the combination of $P$, $L$, and $R$ transformations, with the former being a combination of the latter 2. We can finish defining our GIS with a function $int: S \times S \to G$ which given chords $s, t \in S$ produces the transformation in $G$ required to go from $s$ to $t$.</p>
+<h4 id="the-tonnetz">The Tonnetz</h4>
+<p>Before we get to applying these transformations to a piece of music, it can help to visualize our musical space. For that we turn to the Tonnetz<sup class="footnote-reference"><a href="#2">2</a></sup>. The Tonnetz provides a way to visualize our triads and the transformations in our space. Let's begin by picking a single triad, we'll use a C major triad, and finding a geometric representation. Our triad has 3 notes, so a triangle is the most obvious choice.</p>
+<p align="center">
+<img class="invert" src="/riemann/triad.svg" style="background-color:transparent;object-fit: cover;height: 330px;width:210px;"></img><br>
+A 2-d representation of a C Major Chord
+</p>
+<p>In addition to having 3 notes, we have 3 operations we can perform: $P$, $L$, and $R$. Additionally, since each of these operations always preserve 2 of the 3 notes, we can simply draw 3 new triangles each of which share a side with the original.</p>
+<p align="center">
+<img class="invert" src="/riemann/semiTonnetz.svg" style="background-color:transparent;object-fit: cover;height: 330px;width:210px;"></img><br>
+Visualizing the $P$, $L$, and $R$ operations.
+</p>
+<p>We can continue to extend this diagram, and we will eventually reach a point where we have drawn all 24 major and minor triads. In fact, our Tonnetz has created a cycle both horizontally and vertically:</p>
+<p align="center">
+<img class="invert" src="/riemann/Tonnetz.svg" style="background-color:transparent;object-fit: cover;height: 330px;width:250px;"></img><br>
+An extension of the previous diagram. This isn't the complete Tonnetz.
+</p>
+<p>The Tonnetz is actually isomorphic to a torus, meaning we can view the entire thing in 3 dimensions.</p>
+<p align="center">
+<img src="/riemann/tonnetz-torus.webp" style="height: 200px;"></img><br>
+The Full Tonnetz
+</p>
+<h4 id="using-the-tonnetz-and-neo-riemannian-analysis">Using the Tonnetz and Neo-Riemannian Analysis</h4>
+<p>Finally, we can use all the tools we've developed thus far to analyze a piece. Let's begin with an example from Radiohead: &quot;Morning Bell&quot;. The following progression comes from the Bridge.</p>
+<p style="text-align: center;" align="center" id="morningBell">
+<sub>You can hear the progression starting <a href="https://youtu.be/XTT6k3Q4JnQ?t=143">here</a> at 2:23 till 2:33.</sub>
+</p>
+<p>The progression is very hard to analyze functionally, particularly because our &quot;key&quot; is A major, but that makes chords like the G# Minor and A minor particularly hard to explain<sup class="footnote-reference"><a href="#3">3</a></sup>.</p>
+<p>We can understand this chord progression by viewing the path on a Tonnetz:</p>
+<p align="center">
+<img class="invert" src="/riemann/morningBellLP.svg" style="background-color:transparent;object-fit: cover;height: 330px;width:150px;"></img><br>
+The first 2 chords visualized on a Tonnetz
+</p>
+<p>For the first two chords, we can see that they are separated by an $LP$ transformation. This $LP$ transformation is very common, and is often called a &quot;chromatic mediant&quot;<sup class="footnote-reference"><a href="#4">4</a></sup>. Chromatic mediants are quite useful to add color to a piece, and it's harmonic motion.</p>
+<p>We can also look at the transformation from G# minor to D major:</p>
+<p align="center">
+<img class="invert" src="/riemann/morningBellRPR.svg" style="background-color:transparent;object-fit: cover;height: 330px;width:200px;"></img><br>
+G#m to D on a Tonnetz
+</p>
+<p>The two chords are separated by an $RPR$ transformation: more transformations means the chords are farther apart, and the resulting sound is surprising. We can see this from the sheet music as well; the triads share no common tones.</p>
+<p>The next transformation, from D major to A major, can be explained tonally. If we're considering our &quot;key&quot; to be A major, then we can view this as a $IV$-$I$ progression, or a plagal cadence. This is a common way to resolve music, in addition to the $V$-$I$ we used at the beginning of this post. The last transformation is the most obvious: a parallel transformation.</p>
+<p>Finally, &quot;Morning Bell&quot; also provides a convenient example for how we can transform a group of chord progressions. Let's recall the group of transformations we performed on a single note earlier. It's very easy to modify those operations to work on chords rather than notes. Instead of $T_n$ moving a note $n$ steps, it will do the following:</p>
+<p>$$T_n.a_{maj/min} = (a+n)_{maj/min}$$</p>
+<p>Now let's look at a similar progression from &quot;Morning Bell&quot;, this time from the beginning of the piece.</p>
+<p style="text-align: center;" align="center" id="morningBellIntro">
+</p>
+<p>This might seem completely different that the progression from earlier, however, we can notice the voice leading (how each individual note moves) is very similar to the voice leading in the middle 4 chords from earlier (Em-G#m-D-A). Look what happens when we apply a $T_7$ transformation to the progression:</p>
+<p style="text-align: center;" align="center" id="morningBellpt2"></p>
+<p>We get the same progression!</p>
+<p>Using a combination of $PLR$ operations and $T$ operations<sup class="footnote-reference"><a href="#5">5</a></sup> can help you uncover patterns in pieces of music. Analyzing music is helpful not only for musicians, but also for listeners. Understanding what is going on in the music you listen to, even if it's at a high level, can help you better appreciate the music.</p>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>If none of that made sense, that's fine. I'll define most of those terms much more rigorously in the next section.</p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>Many mathematicians joke that we name everything after the second person who discovered something, because Euler discovered it first. The Tonnetz might not be named after anyone, but it was created by Euler as well.</p>
+</div>
+<div class="footnote-definition" id="3"><sup class="footnote-definition-label">3</sup>
+<p>We could also think of the piece as being in A minor, but then the G# minor and A major chords are hard to explain.</p>
+</div>
+<div class="footnote-definition" id="4"><sup class="footnote-definition-label">4</sup>
+<p>Chromatic mediants can also be found through other transformations. $PR$, $PL$, and $RP$ can also transform a chord into one of its chromatic mediants.</p>
+</div>
+<div class="footnote-definition" id="5"><sup class="footnote-definition-label">5</sup>
+<p>We didn't talk about $I$ operations (inversions) in this post, but together with $T$ operations, it forms the T/I-group, which is just as important as the PLR group. You can read about them (along with some other important information) <a rel="noopener" target="_blank" href="https://www-personal.umd.umich.edu/~tmfiore/1/mathmusiccolloquiumslides.pdf">here</a>.</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
+<script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
+<script src="/riemann/IVI.js"></script>
+<script src="/riemann/scales.js"></script>
+<script src="/riemann/diat.js"></script>
+<script src="/riemann/chp3.js"></script>
+<script src="/riemann/chp4b.js"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (_event) => {
+        const references = document.getElementsByClassName('footnote-reference')
+        // For each footnote reference, set an id so we can refer to it from the definition.
+        // If the definition had an id of 'some_id', then the reference has id `some_id_ref`.
+        for (const reference of references) {
+            const link = reference.firstChild
+            const id = link.getAttribute('href').slice(1) // skip the '#'
+            link.setAttribute('id', `${id}_ref`)
+        }
+
+        const footnotes = document.getElementsByClassName('footnote-definition')
+        // For each footnote-definition, add an anchor element with an href to its corresponding reference.
+        // The text used for the added anchor is 'Leftwards Arrow with Hook' (U+21A9).
+        for (const footnote of footnotes) {
+            const id = footnote.getAttribute('id')
+            const backReference = document.createElement('a')
+            backReference.setAttribute('href', `#${id}_ref`)
+            backReference.textContent = '↩'
+            let p = footnote;
+            for (const child of footnote.children) {
+                if (child.tagName == "P") {
+                    p = child;
+                    break;
+                }
+            }
+            p.append(backReference)
+        }
+    });
+</script>
+
+    </div>
+  </main>
+  <div class="footer">
+    <div>&copy; 2024 Arvind Venkatesh</div>
+  </div>
+
+  <script type="text/javascript" src="https://quantalabs.github.io/elasticlunr.min.js"></script>
+  <script type="text/javascript" src="https://quantalabs.github.io/meta/search.js"></script>
+</body>
+
+</html>
