@@ -1,0 +1,63 @@
+@font-face {
+  font-family: BagnardRegular;
+  src: url("./assets/fonts/BagnardRegular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: OfficeCodePro;
+  src: url("./assets/fonts/OfficeCodePro-Light.otf") format("opentype");
+}
+
+body {
+  font-family: OfficeCodePro, monospace;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+}
+
+.header {
+  font-family: BagnardRegular, serif;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: #11111b;
+  padding: 20px;
+}
+
+#content {
+  margin-left: 340px;
+  padding: 20px;
+  width: 680px;
+}
+
+#pfp {
+  width: 250px;
+  clip-path: circle(45%);
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #181825;
+}
+
+a {
+  color: #89dceb;
+  font-style: italic;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #b4befe;
+}
+
+hr {
+  border-top: 0.1em solid #cdd6f4;
+  border-bottom: 0.1em solid #cdd6f4;
+  height: 1px;
+  margin: auto;
+  width: 50%;
+}
