@@ -61,3 +61,11 @@ hr {
   margin: auto;
   width: 50%;
 }
+
+.caption {
+  font-style: italic;
+  font-size: 0.8em;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
