@@ -12,6 +12,7 @@ body {
   font-family: OfficeCodePro, monospace;
   background-color: #1e1e2e;
   color: #cdd6f4;
+  margin: 10px;
 }
 
 .header {
@@ -19,20 +20,25 @@ body {
 }
 
 #sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: max(15vw, 300px);
-  height: 100vh;
-  background-color: #11111b;
+  height: calc(100vh - 100px);
   padding: 20px;
+  margin: 0px;
 }
 
 #content {
-  margin-left: calc(max(15vw, 300px) + 40px);
   padding: 20px;
   width: max(40vw, 600px);
   line-height: 1.65em;
+}
+
+#page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #11111b;
+  padding: 20px;
+  margin: 0px;
 }
 
 #pfp {
@@ -121,22 +127,34 @@ hr {
   text-align: center;
 }
 
-#pages a, #name {
+#pages a,
+#name {
   font-style: normal;
   color: #cdd6f4;
   text-decoration: none;
   animation-name: none;
 }
 
-#pages a:hover, #name:hover {
+#pages a:hover,
+#name:hover {
   text-decoration: underline;
   background-color: #11111b;
   color: #cdd6f4;
   animation-name: none;
 }
 
-#pages a:visited:hover, #name:visited:hover {
+#pages a:visited:hover,
+#name:visited:hover {
   text-decoration: underline;
   background-color: #11111b;
   color: #cdd6f4;
+}
+
+#quote {
+  font-style: italic;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  padding-bottom: 20px;
+  border-bottom: solid 1px white;
 }
