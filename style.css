@@ -54,6 +54,18 @@ a:visited {
   color: #b4befe;
 }
 
+a:hover {
+  text-decoration: underline;
+  background-color: #89dceb;
+  color: #1e1e2e;
+}
+
+a:visited:hover {
+  text-decoration: underline;
+  background-color: #b4befe;
+  color: #1e1e2e;
+}
+
 hr {
   border-top: 0.1em solid #cdd6f4;
   border-bottom: 0.1em solid #cdd6f4;
@@ -68,4 +80,35 @@ hr {
   text-align: center;
   width: 50%;
   margin: auto;
+}
+
+#links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#pages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 10vh;
+  text-align: center;
+}
+
+#pages a {
+  font-style: normal;
+  color: #cdd6f4;
+}
+
+#pages a:hover {
+  text-decoration: underline;
+  background-color: #11111b;
+  color: #cdd6f4;
+}
+
+#pages a:visited:hover {
+  text-decoration: underline;
+  background-color: #11111b;
+  color: #cdd6f4;
 }
