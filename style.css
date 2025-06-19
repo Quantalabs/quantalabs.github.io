@@ -36,7 +36,7 @@ body {
 }
 
 #pfp {
-  width: calc(max(15vw, 300px)/1.15);
+  width: calc(max(15vw, 300px) / 1.15);
   clip-path: circle(45%);
   margin-bottom: 20px;
   display: block;
@@ -121,21 +121,21 @@ hr {
   text-align: center;
 }
 
-#pages a {
+#pages a, #name {
   font-style: normal;
   color: #cdd6f4;
   text-decoration: none;
   animation-name: none;
 }
 
-#pages a:hover {
+#pages a:hover, #name:hover {
   text-decoration: underline;
   background-color: #11111b;
   color: #cdd6f4;
   animation-name: none;
 }
 
-#pages a:visited:hover {
+#pages a:visited:hover, #name:visited:hover {
   text-decoration: underline;
   background-color: #11111b;
   color: #cdd6f4;
