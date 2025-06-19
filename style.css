@@ -22,20 +22,21 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
+  width: max(15vw, 300px);
   height: 100vh;
   background-color: #11111b;
   padding: 20px;
 }
 
 #content {
-  margin-left: 340px;
+  margin-left: calc(max(15vw, 300px) + 40px);
   padding: 20px;
-  width: 680px;
+  width: max(40vw, 600px);
+  line-height: 1.65em;
 }
 
 #pfp {
-  width: 250px;
+  width: calc(max(15vw, 300px)/1.15);
   clip-path: circle(45%);
   margin-bottom: 20px;
   display: block;
@@ -44,10 +45,37 @@ body {
   background-color: #181825;
 }
 
+@keyframes fade-in {
+  from {
+    background-color: #1e1e2e;
+    color: #89dceb;
+    text-decoration: none;
+  }
+  to {
+    background-color: #89dceb;
+    color: #1e1e2e;
+    text-decoration: underline;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    background-color: #89dceb;
+    color: #1e1e2e;
+    text-decoration: underline;
+  }
+  to {
+    background-color: #1e1e2e;
+    color: #89dceb;
+    text-decoration: none;
+  }
+}
 a {
   color: #89dceb;
   font-style: italic;
   text-decoration: none;
+  animation-name: fade-out;
+  animation-duration: 0.5s;
 }
 
 a:visited {
@@ -58,12 +86,8 @@ a:hover {
   text-decoration: underline;
   background-color: #89dceb;
   color: #1e1e2e;
-}
-
-a:visited:hover {
-  text-decoration: underline;
-  background-color: #b4befe;
-  color: #1e1e2e;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
 }
 
 hr {
@@ -93,18 +117,22 @@ hr {
   flex-direction: column;
   justify-content: space-between;
   height: 10vh;
+  margin: 20px auto;
   text-align: center;
 }
 
 #pages a {
   font-style: normal;
   color: #cdd6f4;
+  text-decoration: none;
+  animation-name: none;
 }
 
 #pages a:hover {
   text-decoration: underline;
   background-color: #11111b;
   color: #cdd6f4;
+  animation-name: none;
 }
 
 #pages a:visited:hover {
