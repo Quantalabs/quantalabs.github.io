@@ -40,6 +40,10 @@ h2 {
   line-height: 1.65em;
 }
 
+.header {
+    line-height: 1.15em;
+}
+
 #page {
   display: flex;
   flex-direction: row;
@@ -173,4 +177,31 @@ hr {
 p,
 li {
   font-size: 1.2em;
+}
+
+#footer {
+  display: none;
+}
+
+@media screen and (max-width: 720px) {
+  #page {
+    flex-direction: column;
+  }
+  #content {
+    width: calc(100% - 40px);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #sidebar {
+    display: none;
+  }
+  #footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px;
+  }
 }
